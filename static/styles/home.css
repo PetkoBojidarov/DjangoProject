@@ -1,0 +1,81 @@
+.container {
+    flex-grow: 1;
+    padding: 2rem;
+    text-align: center;
+}
+
+.highlight {
+    background-color: #e8f1f5;
+    color: #333;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+
+}
+
+.highlight h1 {
+    font-size: 2rem;
+    color: #4B8BBE;
+}
+
+.highlight p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.recipes {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 2rem 0;
+}
+
+.recipes ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0;
+}
+
+.recipes li {
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.recipes li:hover {
+    transform: scale(1.05);
+}
+
+.recipes img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.recipes h3 {
+    font-size: 1.2rem;
+    color: #4B8BBE;
+    margin: 0.5rem 1rem;
+}
+
+.recipes p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 1rem 1rem 1rem;
+    text-align: left;
+}
+

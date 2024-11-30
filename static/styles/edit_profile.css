@@ -1,0 +1,72 @@
+/* Центриране на заглавието вътре във формата */
+form h2.text-center {
+    text-align: center;
+    margin-bottom: 20px; /* Разстояние под заглавието */
+    font-size: 24px; /* Размер на шрифта на заглавието */
+    font-weight: bold; /* Дебел шрифт */
+}
+
+/* Стилизация на формата */
+.profile-edit-form {
+    max-width: 600px; /* Максимална ширина на формата */
+    margin: 0 auto; /* Центриране на формата */
+    padding: 20px;
+    background-color: #f9f9f9; /* Светъл фон за формата */
+    border-radius: 8px; /* Закръглени ъгли */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Лека сянка */
+}
+
+/* Стилизация на всеки form-group */
+.form-group {
+    margin-bottom: 15px; /* Разстояние между полетата */
+}
+
+/* Стилизация на бутоните за запис */
+button.btn-primary {
+    width: 100%; /* Бутонът заема цялата ширина */
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff; /* Син цвят */
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px; /* Разстояние между бутоните */
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3; /* По-тъмен син при hover */
+}
+
+/* Стилизация на бутона за изтриване */
+button.btn-danger {
+    width: 100%; /* Бутонът заема цялата ширина */
+    padding: 10px;
+    font-size: 16px;
+    background-color: #dc3545; /* Червен цвят */
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px; /* Разстояние между бутоните */
+    text-align: center;
+}
+
+button.btn-danger:hover {
+    background-color: #b02a37; /* По-тъмен червен при hover */
+}
+
+/* Стилизация на полетата на формата */
+input.form-control {
+    width: 100%; /* Полето да заема цялата ширина */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Центриране на текста на бутоните */
+button {
+    text-align: center;
+}

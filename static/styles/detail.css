@@ -1,0 +1,81 @@
+/* Основен стил за контейнера на профилната страница */
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Заглавие на страницата */
+.profile-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Секция с профилни данни */
+.profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Параграфи за данни в профила */
+.profile-details p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Изрично маркиране на етикетите */
+.profile-details strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Профилна снимка */
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile-image-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4CAF50;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Клас за добавяне на стил на бутона за редактиране */
+.edit-profile-btn {
+    display: block;
+    width: 200px;
+    padding: 12px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #45a049;
+}
+
+/* Отделяме някои допълнителни елементи като фона на картинката или външен вид */
+.profile-container::after {
+    content: '';
+    display: block;
+    clear: both;
+}
