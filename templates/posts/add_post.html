@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/add_post.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="add-post-form">
+    <h2>Add New Recipe</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Title -->
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+
+        <!-- Ingredients -->
+        <div class="form-group">
+            <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label>
+            {{ form.ingredients }}
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+
+        <!-- Preparation Time -->
+        <div class="form-group">
+            <label for="{{ form.preparation_time.id_for_label }}">Preparation Time:</label>
+            {{ form.preparation_time }}
+        </div>
+
+        <!-- Recipes Categories -->
+        <div class="form-group">
+            <label for="{{ form.recipes_categories.id_for_label }}">Recipes Categories:</label>
+            {{ form.recipes_categories }}
+        </div>
+
+        <!-- Recipe Image -->
+        <div class="form-group">
+            <label for="{{ form.recipes_images.id_for_label }}">Recipe Image:</label>
+            {{ form.recipes_images }}
+        </div>
+
+        <!-- Add Post Button -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

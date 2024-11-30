@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>Edit Recipe</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Формата с всички полета за рецепта -->
+        <button type="submit">Save Changes</button>  <!-- Бутон със заглавие Save Changes -->
+    </form>
+{% endblock %}
