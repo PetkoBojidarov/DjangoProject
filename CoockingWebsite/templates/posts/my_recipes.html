@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <section class="highlight">
+            <h1>My recipes</h1>
+        </section>
+        <section>
+            <h2>My latest recipes</h2>
+            <section class="recipes">
+                <ul>
+                    {% for recipe in my_recipes %}
+                        <li>
+                            {% if recipe.recipes_images %}
+                                <a href="{% url 'detail_post' recipe.pk %}">
+                                <img  src="{{ recipe.recipes_images.url }}" alt="">
+                                </a>
+                            {% else %}
+                            <img src="{% static 'images/recipe-no-image.png' %}" alt="">
+                            {% endif %}
+                            <h3>{{ recipe.title }}</h3>
+                            <p>{{ recipe.description|slice:":30" }}...</p>
+                            <a href="{% url 'edit_post' recipe.pk %}">Edit</a> |
+                            <a href="{% url 'delete_post' recipe.pk %}">Delete</a>
+                        </li>
+                    {% empty %}
+                        <li>No recipes available.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </section>
+    </main>
+{% endblock %}
