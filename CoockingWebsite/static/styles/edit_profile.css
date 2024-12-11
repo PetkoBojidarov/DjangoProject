@@ -1,64 +1,63 @@
-/* Центриране на заглавието вътре във формата */
 form h2.text-center {
     text-align: center;
-    margin-bottom: 20px; /* Разстояние под заглавието */
-    font-size: 24px; /* Размер на шрифта на заглавието */
-    font-weight: bold; /* Дебел шрифт */
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-/* Стилизация на формата */
 .profile-edit-form {
-    max-width: 600px; /* Максимална ширина на формата */
-    margin: 0 auto; /* Центриране на формата */
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9; /* Светъл фон за формата */
-    border-radius: 8px; /* Закръглени ъгли */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Лека сянка */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Стилизация на всеки form-group */
 .form-group {
-    margin-bottom: 15px; /* Разстояние между полетата */
+    margin-bottom: 15px;
 }
 
-/* Стилизация на бутоните за запис */
 button.btn-primary {
-    width: 100%; /* Бутонът заема цялата ширина */
+    width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color: #007bff; /* Син цвят */
+    background-color: #007bff;
     border: none;
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 15px; /* Разстояние между бутоните */
+    margin-top: 15px;
 }
 
 button.btn-primary:hover {
-    background-color: #0056b3; /* По-тъмен син при hover */
+    background-color: #0056b3;
 }
 
-/* Стилизация на бутона за изтриване */
 button.btn-danger {
-    width: 100%; /* Бутонът заема цялата ширина */
+    width: 100%;
     padding: 10px;
     font-size: 16px;
-    background-color: #dc3545; /* Червен цвят */
+    background-color: #dc3545;
     border: none;
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 15px; /* Разстояние между бутоните */
+    margin-top: 15px;
     text-align: center;
 }
 
 button.btn-danger:hover {
-    background-color: #b02a37; /* По-тъмен червен при hover */
+    background-color: #b02a37;
 }
 
-/* Стилизация на полетата на формата */
+button.btn-danger a {
+    text-decoration: none;
+    color: white;
+}
+
 input.form-control {
-    width: 100%; /* Полето да заема цялата ширина */
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     border-radius: 4px;
@@ -66,7 +65,6 @@ input.form-control {
     box-sizing: border-box;
 }
 
-/* Центриране на текста на бутоните */
 button {
     text-align: center;
 }

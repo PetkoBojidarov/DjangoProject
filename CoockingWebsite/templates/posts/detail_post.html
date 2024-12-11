@@ -1,36 +1,88 @@
 {% extends 'base/base.html' %}
 {% load static %}
-
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+<link rel="stylesheet" href="{% static 'styles/detail_post.css' %}">
 {% endblock %}
 
 {% block content %}
-    <main class="container">
-        <section class="highlight">
-            <h1>My recipes</h1>
-        </section>
-        <section>
-            <h2>My latest recipes</h2>
-            <section class="recipes">
-                <ul>
-                    {% for recipe in my_recipes %}
-                        <li>
-                            {% if recipe.recipes_images %}
-                                <a href="{% url 'detail_post' recipe.pk %}">
-                                <img  src="{{ recipe.recipes_images.url }}" alt="">
-                                </a>
-                            {% else %}
-                            <img src="{% static 'images/recipe-no-image.png' %}" alt="">
-                            {% endif %}
-                            <h3>{{ recipe.title }}</h3>
-                            <p>{{ recipe.description|slice:":30" }}...</p>
-                        </li>
-                    {% empty %}
-                        <li>No recipes available.</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        </section>
-    </main>
+<main class="container">
+    <div class="recipe-detail">
+        <!-- Header -->
+        <div class="recipe-header">
+            {% if recipe.author.profile.profile_image %}
+                <img class="profile-image" src="{{ recipe.author.profile.profile_image.url }}" alt="">
+            {% else %}
+                <img class="profile-image" src="{% static 'images/DefaultProfilePicture.jpg' %}" alt="">
+            {% endif %}
+            <div>
+                <h1>{{ recipe.title }}</h1>
+                <p>By: {{ recipe.author.username }}</p>
+            </div>
+        </div>
+
+        <!-- Image -->
+        <div class="recipe-image">
+            {% if recipe.recipes_images %}
+                <img src="{{ recipe.recipes_images.url }}" alt="{{ recipe.title }}">
+            {% else %}
+                <img src="{% static 'images/recipe-no-image.png' %}" alt="No Image Available">
+            {% endif %}
+        </div>
+
+        <!-- Recipe Information -->
+        <div class="recipe-info">
+            <h2>Ingredients</h2>
+            <p>{{ recipe.ingredients }}</p>
+
+            <h2>Description</h2>
+            <p>{{ recipe.description }}</p>
+
+            <h2>Preparation Time</h2>
+            <p>{{ recipe.preparation_time }}</p>
+
+            <h2>Category</h2>
+            <p>{{ recipe.get_recipes_categories_display }}</p>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h2>Comments:</h2>
+            <div class="comments-list">
+                {% for comment in recipe.comment_set.all %}
+                    <div class="comment">
+                        <div class="comment-header">
+                            <div class="comment-author">
+                                {% if comment.user.profile.profile_image %}
+                                    <img class="profile-image" src="{{ comment.user.profile.profile_image.url }}" alt="">
+                                {% else %}
+                                    <img class="profile-image" src="{% static 'images/DefaultProfilePicture.jpg' %}" alt="">
+                                {% endif %}
+                                <p>{{ comment.author.username }}</p>
+                            </div>
+                            <p class="comment-date">{{ comment.date_time_of_comment|date:"F j, Y, g:i a" }}</p>
+                        </div>
+                        <p class="comment-text">{{ comment.text }}</p>
+                    </div>
+                {% empty %}
+                    <br>
+                    <p>Be the first to comment</p>
+                {% endfor %}
+            </div>
+
+            <!-- Add Comment Form -->
+
+            <form class="comment-form" method="POST" action="{% url 'add_comment' recipe.id %}">
+                {% csrf_token %}
+                {{ comment_form }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="recipe-footer">
+            <p>Published on: {{ recipe.created_at|date:"F j, Y" }}</p>
+            <p>Last updated: {{ recipe.updated_at|date:"F j, Y, g:i a" }}</p>
+        </div>
+    </div>
+</main>
 {% endblock %}

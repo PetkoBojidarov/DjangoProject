@@ -1,6 +1,6 @@
 from django import forms
 
-from CoockingWebsite.posts.models import Post
+from CoockingWebsite.posts.models import Post, Comment
 
 
 class BasePostForm(forms.ModelForm):
@@ -19,3 +19,13 @@ class PostEditForm(BasePostForm):
 
 class PostDeleteForm(BasePostForm):
     pass
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text',]
+
+        widgets = {
+            'text': forms.Textarea(attrs={'placeholder': 'Add comment...'}),
+        }

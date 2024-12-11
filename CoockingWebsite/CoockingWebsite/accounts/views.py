@@ -7,11 +7,9 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from CoockingWebsite.accounts.forms import UserRegistrationForm, UserLoginForm, UserEditForm
 from CoockingWebsite.accounts.models import UserProfile
 
-
 UserModel = get_user_model()
 
 
-# Create your views here.
 class RegisterView(CreateView):
     model = UserModel
     form_class = UserRegistrationForm
@@ -20,7 +18,6 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-
         login(self.request, self.object)
         return response
 
@@ -46,7 +43,6 @@ class UserDetailView(DetailView):
         return context
 
 
-
 class UserEditView(UpdateView):
     model = UserProfile
     form_class = UserEditForm
@@ -59,12 +55,9 @@ class UserEditView(UpdateView):
 
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = UserModel
+    template_name = 'profile_detail/delete_profile.html'
     success_url = reverse_lazy('home')
 
     def test_func(self):
         profile = get_object_or_404(UserProfile, pk=self.kwargs['pk'])
         return self.request.user == profile.user
-
-
-
-

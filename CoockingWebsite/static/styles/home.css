@@ -12,7 +12,6 @@
     margin-bottom: 2rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
     text-align: center;
-
 }
 
 .highlight h1 {
@@ -25,6 +24,7 @@
     color: #666;
     margin-top: 0.5rem;
 }
+
 section h2 {
     font-size: 1.5rem;
     color: #333;
@@ -50,7 +50,7 @@ section h2 {
 .recipes li {
     width: 300px;
     background-color: #fff;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -77,5 +77,76 @@ section h2 {
     color: #666;
     margin: 0 1rem 1rem 1rem;
     text-align: left;
+}
+
+
+.actionBtns {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pagination .step-links a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: #4B8BBE;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .step-links a:hover {
+    background-color: #e8f1f5;
+}
+
+.pagination .current {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #4B8BBE;
+    border-radius: 5px;
+    background-color: #f0f8ff;
+}
+
+.heart {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+
+.heart i {
+    font-size: 24px;
+}
+
+.heart i.fa-solid {
+    color: #ed4040;
+}
+
+.heart i.fa-regular {
+    color: #ddd;
+}
+
+.heart:hover i {
+    color: #ed4040;
+
+}
+
+
+.likes {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    padding: 0;
 }
 

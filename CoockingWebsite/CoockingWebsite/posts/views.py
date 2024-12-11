@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView, DetailView
 
-from CoockingWebsite.posts.forms import PostAddForm, PostEditForm
-from CoockingWebsite.posts.models import Post
+from CoockingWebsite.posts.forms import PostAddForm, PostEditForm, CommentForm
+from CoockingWebsite.posts.models import Post, Comment, Like
 
 
 # Create your views here.
@@ -30,8 +32,8 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         post = self.get_object()
-        response = super().delete(request, *args, **kwargs)  # Извиква стандартното изтриване
-        # Актуализиране на total_recipes
+        response = super().delete(request, *args, **kwargs)
+
         user_profile = post.author.profile
         user_profile.total_recipes = post.author.posts.count()
         user_profile.save()
@@ -42,14 +44,15 @@ class DeletePost(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == post.author
 
 
-class DetailPost(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+class DetailPost(LoginRequiredMixin, DetailView):
     model = Post
     context_object_name = 'recipe'
     template_name = 'posts/detail_post.html'
 
-    def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
 
 
 class EditPost(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -72,3 +75,32 @@ class MyRecipesView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
+
+
+@login_required
+def add_comment(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == "POST":
+        text = request.POST.get('text')
+
+        comment = Comment(text=text, to_recipes=post, user=request.user)
+
+        comment.save()
+
+        return redirect('detail_post', pk=post.id)
+
+    return render(request, 'posts/detail_post.html', {'post': post})
+
+
+@login_required
+def toggle_like(request, recipe_id):
+    recipe = get_object_or_404(Post, pk=recipe_id)
+    liked_object = Like.objects.filter(to_recipes=recipe, user=request.user).first()
+
+    if liked_object:
+        liked_object.delete()
+    else:
+        Like.objects.create(to_recipes=recipe, user=request.user)
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+

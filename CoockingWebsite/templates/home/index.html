@@ -22,10 +22,13 @@
                         <a href="{% url 'detail_post' recipe.pk %}">
                         <img src="{{ recipe.recipes_images.url }}" alt="Recipe 1">
                         </a>
-                    {% else %}<img src="{% static 'images/recipe-no-image.png' %}" alt="Recipe 1">
+                    {% else %}
+                        <a href="{% url 'detail_post' recipe.pk %}">
+                        <img src="{% static 'images/recipe-no-image.png' %}" alt="Recipe 1">
+                        </a>
                     {% endif %}
                     <h3>{{ recipe.title }}</h3>
-                    <p>{{ recipe.description }}</p>
+                    <p>{{ recipe.description|slice:":30"}}...</p>
                 </li>
             {% endfor %}
         </ul>

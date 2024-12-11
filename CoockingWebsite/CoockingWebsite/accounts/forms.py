@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 
 from CoockingWebsite.accounts.models import CustomUser, UserProfile
+from CoockingWebsite.accounts.validators import OnlyLettersValidator
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -32,6 +33,7 @@ class UserRegistrationForm(UserCreationForm):
         username = self.cleaned_data.get('username')
         if CustomUser.objects.filter(username=username).exists():
             raise ValidationError('This username is already taken.')
+        OnlyLettersValidator()(username)
         return username
 
 
@@ -72,11 +74,11 @@ class UserEditForm(forms.ModelForm):
         self.fields['total_recipes'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Number of recipes',
-            'readonly': 'readonly',  # Ако това поле не трябва да се променя от потребителя
+            'readonly': 'readonly',
         })
         self.fields['profile_image'].widget.attrs.update({'class': 'form-control'})
-        self.fields['profile_image'].widget.clear_checkbox_label = ''  # Скрива етикета "Clear"
-        self.fields['profile_image'].widget.initial_text = ''  # Скрива текста "Currently"
+        self.fields['profile_image'].widget.clear_checkbox_label = ''
+        self.fields['profile_image'].widget.initial_text = ''
 
         self.fields['cooking_level'].widget.attrs.update({
             'class': 'form-control',
@@ -88,3 +90,4 @@ class UserProfileDeleteForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = []
+
